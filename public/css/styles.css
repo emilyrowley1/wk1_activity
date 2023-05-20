@@ -1,0 +1,134 @@
+/*Styling for the header*/
+header a {
+  text-decoration: none;
+  color: black;
+}
+header {
+  display: flex;
+  margin: auto;
+  justify-content: space-between;
+}
+.siteName {
+  font-size:x-large;
+}
+#tools {
+  text-align: right;
+  vertical-align:middle;
+}
+
+/*Styling for the Navigation*/
+nav {
+  background-color: black;
+}
+nav ul{
+  padding: 0;
+  text-align: center;
+}
+nav ul li {
+  display: inline-block;
+  padding: .5rem;
+  margin: auto;
+}
+nav ul li a {
+  text-decoration: none;
+  color: white;
+  font-weight: 700;
+}
+nav ul li:hover {
+  background-color: grey;
+}
+nav ul li:active {
+  background-color: grey;
+}
+/*Styling for the body*/
+body h2 {
+  text-align: center;
+}
+div#hero img {
+  width: 70%;
+}
+div#hero {
+  position: relative;
+  text-align: right;
+}
+div#features {
+  background: rgba(255,255,255,0.9);
+  position: absolute;
+  bottom: 8px;
+  left: 10px;
+  text-align: center;
+  border: solid red;
+}
+div#features ul {
+  list-style: none;
+  text-align: center;
+  padding: 0rem 1rem;
+}
+button {
+  margin-bottom: 0.5rem;
+  color: black;
+  font-weight: 700;
+  background: red;
+  border-radius: 8px;
+  border: darkred solid;
+}
+main > div {
+  margin-top: 2rem;
+}
+div#reviews ul li {
+  padding: 0.5rem;
+}
+div#upgradeBoxes div {
+  background: rgba(255, 0, 0, 0.2);
+  margin: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0.5rem;
+  width: 30%;
+  height: auto;
+  padding: 0.5rem;
+  flex-wrap: wrap;
+  border: solid red;
+}
+div#upgradeBoxes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+div#upgradeBoxes a {
+  text-decoration: none;
+  color: black;
+}
+body {
+  font-family: math;
+}
+
+/*Styling for browsers*/
+@media only screen and (min-width: 983px) {
+  body {
+      max-width: 805px;
+      margin: auto;
+      margin-top: 75px;
+      margin-bottom: 75px;
+      background-color: white;
+      padding: 2rem;
+      border: solid red 20px;
+  }
+  html {
+    background-image: url('../images/site/small_check.jpg');
+  }
+  main {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  #reviews {
+    max-width: 40%;
+    order: 4;
+  }
+  #upgrades {
+    max-width: 40%;
+  }
+}
