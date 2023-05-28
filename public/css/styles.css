@@ -1,3 +1,8 @@
+:root {
+  --color1: #765026;
+  --color2: #b18d6573;
+}
+
 /*Styling for the header*/
 header a {
   text-decoration: none;
@@ -40,7 +45,7 @@ nav ul li:hover {
 nav ul li:active {
   background-color: grey;
 }
-/*Styling for the body*/
+/*Styling for the main page body*/
 body h2 {
   text-align: center;
 }
@@ -52,12 +57,12 @@ div#hero {
   text-align: right;
 }
 div#features {
-  background: rgba(255,255,255,0.9);
+  background: var(--color2);
   position: absolute;
   bottom: 8px;
   left: 10px;
   text-align: center;
-  border: solid red;
+  border: solid var(--color1);
 }
 div#features ul {
   list-style: none;
@@ -68,9 +73,9 @@ button {
   margin-bottom: 0.5rem;
   color: black;
   font-weight: 700;
-  background: red;
+  background: var(--color2);
   border-radius: 8px;
-  border: darkred solid;
+  border: 3px solid var(--color1);
 }
 main > div {
   margin-top: 2rem;
@@ -79,7 +84,7 @@ div#reviews ul li {
   padding: 0.5rem;
 }
 div#upgradeBoxes div {
-  background: rgba(255, 0, 0, 0.2);
+  background: var(--color2);
   margin: 0.5rem;
   display: flex;
   flex-direction: column;
@@ -90,7 +95,7 @@ div#upgradeBoxes div {
   height: auto;
   padding: 0.5rem;
   flex-wrap: wrap;
-  border: solid red;
+  border: solid var(--color1);
 }
 div#upgradeBoxes {
   display: flex;
@@ -105,6 +110,50 @@ body {
   font-family: math;
 }
 
+/*STYLING FOR THE INV TYPES PAGES*/
+main h1{
+  text-align: center;
+  width: 100%;
+}
+
+#inv-display {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+#inv-display li{
+  list-style: none;
+  margin: 10px;
+  text-align: center;
+  padding: 20px;
+  max-width: 200px;
+  border: 5px solid var(--color2);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#inv-display li a{
+  text-decoration: none;
+  color: black;
+}
+
+#inv-display li hr{
+  border-top: 5px solid var(--color1)
+}
+
+/*STYLING FOR PRODUCT DETAILS PAGES*/
+#details {
+  text-align: center;
+  padding: 30px;
+}
+
+#details-info {
+  text-align: left;
+}
+
 /*Styling for browsers*/
 @media only screen and (min-width: 983px) {
   body {
@@ -114,7 +163,7 @@ body {
       margin-bottom: 75px;
       background-color: white;
       padding: 2rem;
-      border: solid red 20px;
+      border: solid var(--color1) 20px;
   }
   html {
     background-image: url('../images/site/small_check.jpg');

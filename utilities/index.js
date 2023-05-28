@@ -37,9 +37,9 @@ Util.buildClassificationGrid = async function(data){
       + '" title="View ' + vehicle.inv_make + ' '+ vehicle.inv_model 
       + 'details"><img src="' + vehicle.inv_thumbnail 
       +'" alt="Image of '+ vehicle.inv_make + ' ' + vehicle.inv_model 
-      +' on CSE Motors" /></a>'
+      +' on CSE Motors"/></a>'
       grid += '<div class="namePrice">'
-      grid += '<hr />'
+      grid += '<hr/>'
       grid += '<h2>'
       grid += '<a href="../../inv/detail/' + vehicle.inv_id +'" title="View ' 
       + vehicle.inv_make + ' ' + vehicle.inv_model + ' details">' 
@@ -56,5 +56,34 @@ Util.buildClassificationGrid = async function(data){
   }
   return grid
 }
+
+/* **************************************
+* Build the Details view HTML
+* ************************************ */
+Util.buildDetailsViewHtml = async function(data){
+  let htmlToReturn = ''
+  
+  if(data.length > 0){
+    data.forEach(vehicle => {
+      htmlToReturn += '<div id="details">'
+      htmlToReturn += '<img src="' + vehicle.inv_image +'" alt="Image of '+ vehicle.inv_make + ' ' + vehicle.inv_model +' on CSE Motors" />'
+      htmlToReturn += '<h2>' + vehicle.inv_year + ' ' + vehicle.inv_make + ' ' + vehicle.inv_model + ' Details</h2>'
+      htmlToReturn += '<div id="details-info">'
+      htmlToReturn += '<p><b>Price:</b> $' + new Intl.NumberFormat('en-US').format(vehicle.inv_price) + '</p>'
+      htmlToReturn += '<p><b>Description: </b>' + vehicle.inv_description + '</p>'
+      htmlToReturn += '<p><b>Color: </b>' + vehicle.inv_color + '</p>'
+      htmlToReturn += '<p><b>Miles: </b>' + Intl.NumberFormat().format(vehicle.inv_miles) + '</p>'
+      htmlToReturn += '</div></div>'
+    });
+  }
+ 
+  return htmlToReturn
+}
+/* ****************************************
+ * Middleware For Handling Errors
+ * Wrap other function in this for 
+ * General Error Handling
+ **************************************** */
+Util.handleErrors = fn => (req, res, next) => Promise.resolve(fn(req, res, next)).catch(next)
 
 module.exports = Util
