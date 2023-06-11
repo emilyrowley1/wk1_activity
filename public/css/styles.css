@@ -154,6 +154,86 @@ main h1{
   text-align: left;
 }
 
+/*STYLING FOR LOGIN AND REGISTRATION PAGES*/
+.formPage {
+  background: var(--color2);
+  text-align: center;
+  width: 50%;
+  margin: auto;
+  padding: 2rem;
+  border: 5px solid var(--color1);
+}
+
+.myForm {
+  display: flex;
+  flex-direction: column;
+}
+
+form label {
+  text-align: left;
+  padding-top: 1rem;
+  font-size: 1.5rem;
+}
+
+form input {
+  font-size: 1.5rem;
+}
+
+form button {
+  font-size: 1.5rem;
+}
+
+form div {
+  padding: 1rem;
+}
+
+#registerPage {
+  background: var(--color2);
+  text-align: center;
+  width: 50%;
+  margin: auto;
+  padding: 2rem;
+  border: 5px solid var(--color1);
+}
+
+#registerForm {
+  display: flex;
+  flex-direction: column;
+}
+
+/*STYLING FLASH MESSAGES*/
+.errors {
+  list-style: none;
+  text-align: center;
+  padding: 0;
+}
+
+.errors li {
+  margin: auto;
+  margin-bottom: .5rem;
+  padding: 0.25rem;
+  background: lightsalmon;
+  border: 2px solid red;
+  border-radius: 10px;
+  width: 50%;
+}
+
+.success {
+  list-style: none;
+  text-align: center;
+  padding: 0;
+}
+
+.success li {
+  margin: auto;
+  margin-bottom: .5rem;
+  padding: 0.25rem;
+  background: rgb(187, 248, 155);
+  border: 2px solid rgb(127, 209, 95);
+  border-radius: 10px;
+  width: 50%;
+}
+
 /*Styling for browsers*/
 @media only screen and (min-width: 983px) {
   body {
@@ -168,7 +248,7 @@ main h1{
   html {
     background-image: url('../images/site/small_check.jpg');
   }
-  main {
+  #homePage {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;

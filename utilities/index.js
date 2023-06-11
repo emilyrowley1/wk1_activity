@@ -86,4 +86,18 @@ Util.buildDetailsViewHtml = async function(data){
  **************************************** */
 Util.handleErrors = fn => (req, res, next) => Promise.resolve(fn(req, res, next)).catch(next)
 
+
+/* ************************
+ * Constructs the dropdown to add to inventory
+ ************************** */
+Util.getClassificationsDropDown = async function (req, res, next) {
+  let data = await invModel.getClassifications()
+  let list = "<select id='inv_classification' name='inv_classification' required>"
+  data.rows.forEach((row) => {
+    list += '<option value="' +row.classification_id +'">' + row.classification_name +'</option>'
+  })
+  list += "</select>"
+  return list
+}
+
 module.exports = Util
