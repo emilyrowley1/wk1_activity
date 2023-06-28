@@ -1,0 +1,42 @@
+<% if (title) { %>
+    <h1><%= title %></h1>
+<% } else {
+    res.redirect('/')  
+} %>
+
+<%- messages() %>
+
+<% if (errors) { %>
+    <ul class="errors">
+   <% errors.array().forEach(error => { %>
+     <li><%= error.msg %></li>
+<%  }) %>
+    </ul>
+<% } %>
+
+<div id="accountUpdate" class="formPage">
+    <form class="myForm" action="/account/update/<%= accountData.account_id %>" method="post">
+        <label for="account_firstname">First name:</label>
+            <input type="text" name="account_firstname" id="account_firstname" required value="<%= accountData.account_firstname %>">
+
+            <label for="account_lastname">Last name:</label>
+            <input name="account_lastname" type="text" id="account_lastname" required value="<%= accountData.account_lastname %>">
+    
+            <label for="account_email">Email Address:</label>
+            <input name="account_email" type="email" id="account_email" required placeholder="Please enter a valid email" value="<%= accountData.account_email %>">
+        <button type="submit">Update</button>
+    </form>
+
+    
+    <p>No account? <a href="/account/register">Sign Up</a></p>
+</div>
+<div id="passwordUpdate" class="formPage">
+    <form class="myForm" action="/account/updatePassword/<%= accountData.account_id %>" method="post">
+        <label for="account_password">New Password:</label>
+        <input id="account_password" name="account_password" type="password" required pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$">
+        <div>There must be at least 12 characters, one must be a number, one must be a lowercase letter, one must be a capital letter, and one must be a non-alphanumeric character.</div>
+    
+        <button type="submit">Update Password</button>
+    </form>
+
+</div>

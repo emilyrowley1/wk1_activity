@@ -13,10 +13,10 @@
 <%  }) %>
     </ul>
 <% } %>
-
+<!-- <script src="../../js/inv-update.js"></script> -->
 <div class="formPage">
 
-    <form action="/inv/addInventory" method="post" id="addInventoryForm" class="myForm">
+    <form action="/inv/update" method="post" class="myForm" id="updateForm">
         <div>All fields are required.</div>
 
         <label for="classification_id">Classification:</label>
@@ -51,6 +51,10 @@
         <label for="inv_color">Color:</label>
         <input type="text" name="inv_color" id="inv_color" required value="<%= locals.inv_color %>">
     
-        <button type="submit">Add Vehicle</button>
+        <button type="submit">Update Vehicle</button>
+
+        <input type="hidden" name="inv_id"
+        <% if(locals.inv_id) { %> value="<%= locals.inv_id %>"
+        <% } %>>
     </form>
 </div>
