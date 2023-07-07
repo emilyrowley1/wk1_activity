@@ -1,4 +1,5 @@
 const invModel = require("../models/inventory-model");
+const messageModel = require("../models/message-model")
 const Util = {};
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
@@ -193,6 +194,63 @@ Util.checkAccountType = (req, res, next) => {
     req.flash("errors", "You don't have credentials.");
     return res.redirect("/");
   }
+};
+
+/* **************************************
+ * Build the message inbox view HTML
+ * ************************************ */
+Util.buildMessageTable = async function (data) {
+  let grid = '';
+  if (data.length > 0) {
+    grid = '<table id="inbox-display"><tr><th>Received</th><th>Subject</th><th>From</th><th>Read</th></tr>';
+
+    const promises = data.map(async (message) => {
+      let name = await messageModel.getName(message.message_from);
+      grid += "<tr>";
+      grid += "<td>" + new Date(message.message_created).toLocaleString() + "</td>";
+      grid += "<td><a href='./message/" + message.message_id + "'>" + message.message_subject + "</a></td>";
+      grid += "<td>" + name.account_firstname + " " + name.account_lastname + "</td>";
+      grid += "<td>" + message.message_read + "</td>";
+      grid += "</tr>";
+    });
+
+    await Promise.all(promises);
+
+    grid += "</table>";
+  } else {
+    grid += '<p class="notice">It looks like you do not have any messages!</p>';
+  }
+
+  return grid;
+};
+
+/* **************************************
+ * Build the message details view HTML
+ * ************************************ */
+Util.buildMessageDetailsViewHtml = async function (data) {
+  let htmlToReturn = '';
+  if (data.length > 0) {
+    // data = data[0];
+    const sender = await messageModel.getName(data[0].message_from)
+
+    htmlToReturn += "<div id='message_tools'><a href='/message' class='button'>Return to Inbox</a>";
+    htmlToReturn += "<a href='/message' class='button'>Reply</a>";
+    htmlToReturn += "<a href='/message' class='button'>Mark as Read</a>";
+    htmlToReturn += "<a href='/message/archive/" + data[0].message_id + "' class='button'>Archive Message</a>";
+    htmlToReturn += "<a href='/message' class='button'>Delete Message</a></div><hr>";
+
+    htmlToReturn += "<table id=message_display>";
+    htmlToReturn += "<tr><th>Subject: </th><td>" + data[0].message_subject + "</td></tr>";
+    htmlToReturn += "<tr><th>From: </th><td>" + sender.account_firstname + " " + sender.account_lastname + "</td></tr>";
+    htmlToReturn += "<tr><th>Message: </th><td>" + data[0].message_body + "</td></tr>";
+    htmlToReturn += "</table>";
+
+
+
+
+
+  }
+  return htmlToReturn;
 };
 
 module.exports = Util;

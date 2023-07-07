@@ -234,6 +234,36 @@ form div {
   width: 50%;
 }
 
+table#inbox-display {
+  width: 90%;
+  text-align: left;
+}
+
+#inbox-display tr:nth-child(even){background-color: #cbcaca;}
+
+.button {
+  margin: 0.5rem;
+  text-decoration: none;
+  background: var(--color2);
+  color: black;
+  /* width: 1.5rem; */
+  padding: 0.25rem;
+  width: -webkit-fill-available;
+  border: 5px solid black;
+  text-align: center;
+}
+
+div#message_tools {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: stretch;
+}
+
+#message_display {
+  text-align: left;
+}
+
 /*Styling for browsers*/
 @media only screen and (min-width: 983px) {
   body {

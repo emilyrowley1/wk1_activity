@@ -6,7 +6,7 @@
     
 <%- messages() %>
 
-<h2>Welcome <%= account_firstname %></h2>
+<h3>Welcome <%= account_firstname %></h3>
 
 <% if (errors) { %>
     <ul class="errors">
@@ -27,3 +27,8 @@
     <p><a href="../inv">Inventory Management</a></p>
 <% } %>
 
+<h3>Message Center</h3>
+<ul>
+    <li>You have ___ messages to read</li>
+    <li>Go to <a href="/message">inbox</a></li>
+</ul>
