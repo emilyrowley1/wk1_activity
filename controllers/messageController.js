@@ -127,6 +127,8 @@ messageCont.sendMessage = async function (req, res) {
   let users = await utilities.buildUserDropdown(req.body.message_to);
   const data = await messageModel.getInboxMessagesByAccountId(res.locals.accountData.account_id);
   const messageTable = await utilities.buildMessageTable(data);
+  const a = await messageModel.getArchivedMessagesByAccountId(res.locals.accountData.account_id);
+  const archived = a.length;
 
   if (regResult) {
     req.flash("success", `Message Sent`);
@@ -134,7 +136,7 @@ messageCont.sendMessage = async function (req, res) {
       title: res.locals.accountData.account_firstname + " " + res.locals.accountData.account_lastname + " Inbox",
       nav,
       messageTable: messageTable,
-      archived: 1,
+      archived,
       errors: null
     });
   } else {
