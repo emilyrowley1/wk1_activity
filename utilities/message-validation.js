@@ -9,17 +9,20 @@ validate.sendMessageRules = () => {
     return [
       // valid email is required and cannot already exist in the DB
       body("message_to")
+      .isLength({ min: 1 })
       .trim()
       .withMessage("There must be someone to send it to"),
   
       // message subject required
       body("message_subject")
         .trim()
+        .isLength({ min: 1 })
         .withMessage("There must be a subject"),
 
-         // message body required
+      //    // message body required
       body("message_body")
       .trim()
+      .isLength({ min: 1 })
       .withMessage("There must be a message body"),
     ]
 }
@@ -35,11 +38,11 @@ validate.checkSendMessageData = async (req, res, next) => {
     errors = validationResult(req)
     if (!errors.isEmpty()) {
       let nav = await utilities.getNav()
-      res.render("account/login", {
+      res.render("message/newMessage", {
         errors,
         title: "Create a New Message",
         nav,
-        // message_to: message_to_dropdown,
+        message_to: message_to_dropdown,
         message_subject,
         message_body
       })

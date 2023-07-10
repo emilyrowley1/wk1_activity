@@ -14,7 +14,7 @@ router.get("/reply/:message_id", utilities.handleErrors(messageController.buildR
 
 router.get("/new", utilities.handleErrors(messageController.buildNewMessage))
 router.post("/new", 
-    //messageValidate.sendMessageRules(), 
+    messageValidate.sendMessageRules(), 
     messageValidate.checkSendMessageData, 
     utilities.handleErrors(messageController.sendMessage
 ))

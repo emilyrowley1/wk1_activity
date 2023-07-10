@@ -18,6 +18,7 @@ messageCont.buildInbox = async function (req, res, next) {
   res.render("./message/inbox", {
     title: res.locals.accountData.account_firstname + " " + res.locals.accountData.account_lastname + " Inbox",
     nav,
+    errors: null,
     messageTable: messageTable,
     archived
   });
@@ -31,6 +32,7 @@ messageCont.buildMessageView = async function (req, res, next) {
   const message_subject = data[0].message_subject;
   res.render("./message/details", {
     title: message_subject,
+    errors: null,
     nav,
     details: details,
   });
@@ -99,6 +101,7 @@ messageCont.buildNewMessage = async function (req, res, next) {
 
   let nav = await utilities.getNav();
   res.render("./message/newMessage", {
+    errors: null,
     title: "Create A New Message",
     nav,
     message_to: message_to
@@ -174,6 +177,7 @@ messageCont.buildReply = async function (req, res, next) {
   res.render("./message/newMessage", {
     title: "Reply to " + name.account_firstname + " " + name.account_lastname,
     nav,
+    errors: null,
     message_to: message_to,
     message_subject: "RE: " + data[0].message_subject,
     message_body: "\n\n\n-------------------------------------\n" + data[0].message_body

@@ -6,7 +6,14 @@
 
 <%- messages() %>
 
-<p>This is the new message view</p>
+<% if (errors) { %>
+    <ul class="errors">
+   <% errors.array().forEach(error => { %>
+     <li><%= error.msg %></li>
+<%  }) %>
+    </ul>
+<% } %>
+
 <div class="formPage">
 
 <form id="send_message_form" method="post" action="/message/new" class="myForm">

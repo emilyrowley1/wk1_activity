@@ -36,7 +36,6 @@ async function buildManagement(req, res, next) {
   const unread_messages = await messageModel.getUnreadMessagesByAccountId(res.locals.accountData.account_id);
 
   let nav = await utilities.getNav()
-  console.log("hello")
   res.render("account/management", {
     title: "Management",
     nav,
