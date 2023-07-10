@@ -264,6 +264,17 @@ div#message_tools {
   text-align: left;
 }
 
+textarea {
+  height: 150px;
+}
+
+th {
+  vertical-align: top;
+}
+td{
+  padding-bottom: 1rem;
+}
+
 /*Styling for browsers*/
 @media only screen and (min-width: 983px) {
   body {

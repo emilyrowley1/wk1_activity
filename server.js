@@ -65,7 +65,7 @@ app.use("/inv", utilities.handleErrors(require("./routes/inventoryRoute")));
 app.use("/account", utilities.handleErrors(require("./routes/accountRoute")));
 
 // Message routes
-app.use("/message", utilities.handleErrors(require("./routes/messageRoute")));
+app.use("/message", utilities.checkLogin, utilities.handleErrors(require("./routes/messageRoute")));
 
 // intentional error route
 app.get("/error", utilities.handleErrors(baseController.error));

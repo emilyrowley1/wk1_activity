@@ -208,7 +208,7 @@ Util.buildMessageTable = async function (data) {
       let name = await messageModel.getName(message.message_from);
       grid += "<tr>";
       grid += "<td>" + new Date(message.message_created).toLocaleString() + "</td>";
-      grid += "<td><a href='./message/" + message.message_id + "'>" + message.message_subject + "</a></td>";
+      grid += "<td><a href='/message/" + message.message_id + "'>" + message.message_subject + "</a></td>";
       grid += "<td>" + name.account_firstname + " " + name.account_lastname + "</td>";
       grid += "<td>" + message.message_read + "</td>";
       grid += "</tr>";
@@ -234,15 +234,15 @@ Util.buildMessageDetailsViewHtml = async function (data) {
     const sender = await messageModel.getName(data[0].message_from)
 
     htmlToReturn += "<div id='message_tools'><a href='/message' class='button'>Return to Inbox</a>";
-    htmlToReturn += "<a href='/message' class='button'>Reply</a>";
-    htmlToReturn += "<a href='/message' class='button'>Mark as Read</a>";
+    htmlToReturn += "<a href='/message/reply/" + data[0].message_id + "' class='button'>Reply</a>";
+    htmlToReturn += "<a href='/message/markRead/" + data[0].message_id + "' class='button'>Mark as Read</a>";
     htmlToReturn += "<a href='/message/archive/" + data[0].message_id + "' class='button'>Archive Message</a>";
-    htmlToReturn += "<a href='/message' class='button'>Delete Message</a></div><hr>";
+    htmlToReturn += "<a href='/message/delete/" + data[0].message_id + "' class='button'>Delete Message</a></div><hr>";
 
     htmlToReturn += "<table id=message_display>";
     htmlToReturn += "<tr><th>Subject: </th><td>" + data[0].message_subject + "</td></tr>";
     htmlToReturn += "<tr><th>From: </th><td>" + sender.account_firstname + " " + sender.account_lastname + "</td></tr>";
-    htmlToReturn += "<tr><th>Message: </th><td>" + data[0].message_body + "</td></tr>";
+    htmlToReturn += "<tr><th>Message: </th><td><pre>" + data[0].message_body + "</pre></td></tr>";
     htmlToReturn += "</table>";
 
 
@@ -251,6 +251,24 @@ Util.buildMessageDetailsViewHtml = async function (data) {
 
   }
   return htmlToReturn;
+};
+
+/* ************************
+ * Constructs a dropdown of all of the users to send a message to
+ ************************** */
+Util.buildUserDropdown = async function (optionSelected) {
+  let data = await messageModel.getUsers();
+
+  let list = `<select id='accoutList' name='message_to' required>
+  <option value="">Select a recipient</option>`;
+  data.rows.forEach((row) => {
+    list +=`<option value="${row.account_id}"
+    ${row.account_id === Number(optionSelected) ? 'selected': ''} > 
+      ${row.account_firstname} ${row.account_lastname}
+      </option>`;
+  });
+  list += '</select>';
+  return list;
 };
 
 module.exports = Util;

@@ -6,14 +6,23 @@ const utilities = require('../utilities')
 const messageValidate = require('../utilities/message-validation')
 
 // routes that everyone can get to
-router.get("/", utilities.handleErrors(messageController.buildInbox));
-router.get("/:message_id", utilities.handleErrors(messageController.buildMessageView));
+router.get("/archive", utilities.handleErrors(messageController.buildArchive));
 router.get("/archive/:message_id", utilities.handleErrors(messageController.archiveMessage))
 router.get("/markRead/:message_id", utilities.handleErrors(messageController.markAsRead))
+router.get("/delete/:message_id", utilities.handleErrors(messageController.deleteMessage))
+router.get("/reply/:message_id", utilities.handleErrors(messageController.buildReply))
 
+router.get("/new", utilities.handleErrors(messageController.buildNewMessage))
+router.post("/new", 
+    //messageValidate.sendMessageRules(), 
+    messageValidate.checkSendMessageData, 
+    utilities.handleErrors(messageController.sendMessage
+))
 
-router.get("/send", utilities.handleErrors(messageController.buildSendMessage))
-router.get("/outbox", utilities.handleErrors(messageController.buildOutbox));
+router.get("/:message_id", utilities.handleErrors(messageController.buildMessageView));
+
+router.get("/", utilities.handleErrors(messageController.buildInbox));
+
 
 // // Route to build message by classification view
 // router.get("",  utilities.checkAccountType, utilities.handleErrors(messageController.buildManagement));

@@ -93,12 +93,6 @@ validate.loginRules = () => {
         minSymbols: 1,
       })
       .withMessage("Password does not meet requirements.")
-      // .custom(async (account_email, account_password) => {
-      //   const verified = await accountModel.checkLoginCredentials(account_email, account_password)
-      //   if (!verified){
-      //     throw new Error("Login was unsuccessful, please try again.")
-      //   }
-      // }),
   ]
 }
 
@@ -197,23 +191,5 @@ validate.newPasswordRules = () => {
   ]
 }
 
-/* ******************************
-* Check data and return errors or continue to registration
-* ***************************** */
-// validate.checkRegData = async (req, res, next) => {
-//   let errors = []
-//   errors = validationResult(req)
-//   if (!errors.isEmpty()) {
-//     let nav = await utilities.getNav()
-//     res.render(`account/update-user`, {
-//       errors,
-//       title: "Update Account",
-//       nav,
-//       accountData: res.locals.accountData
-//     })
-//     return
-//   }
-//   next()
-// }
 
 module.exports = validate

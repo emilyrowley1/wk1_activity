@@ -1,0 +1,33 @@
+<% if (title) { %>
+    <h1><%= title %></h1>
+<% } else {
+    res.redirect('/')
+} %>
+
+<%- messages() %>
+
+<p>This is the new message view</p>
+<div class="formPage">
+
+<form id="send_message_form" method="post" action="/message/new" class="myForm">
+    <div>All fields are required.</div>
+
+    <label for="message_to">To:</label>
+    <%- locals.message_to %>
+
+    <label for="message_subject">Subject</label>
+    <input type="text" name="message_subject" id="message_subject" required value="<%= locals.message_subject %>">
+
+    <label for="message_body">Message:</label>
+    <textarea name="message_body" id="message_body" required>
+        <%= locals.message_body %>
+    </textarea>
+
+    <!-- <input type="hidden" id="message_from" name="message_from" value=""> -->
+
+    <button type="submit">Send</button>
+
+</form>
+</div>
+        
+        
